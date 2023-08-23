@@ -14,6 +14,9 @@ import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
 const PickUpScreen = () => {
+  const todayDate = new Date();
+  let nextWeekDate = new Date();
+  nextWeekDate.setDate(nextWeekDate.getDate() + 7);
   const [selectedDate, setSelectedDate] = useState("");
   const cart = useSelector((state) => state.cart.cart);
   const total = cart
@@ -47,27 +50,27 @@ const PickUpScreen = () => {
   const times = [
     {
       id: "0",
-      time: "11:00 PM",
+      time: "11:00",
     },
     {
       id: "1",
-      time: "12:00 PM",
+      time: "12:00",
     },
     {
       id: "2",
-      time: "1:00 PM",
+      time: "13:00",
     },
     {
-      id: "2",
-      time: "2:00 PM",
+      id: "3",
+      time: "14:00",
     },
     {
       id: "4",
-      time: "3:00 PM",
+      time: "15:00",
     },
     {
       id: "5",
-      time: "4:00 PM",
+      time: "16:00",
     },
   ];
   const navigation = useNavigation();
@@ -119,9 +122,9 @@ const PickUpScreen = () => {
         </Text>
         <HorizontalDatepicker
           mode="gregorian"
-          startDate={new Date("2023-02-21")}
-          endDate={new Date("2023-02-28")}
-          initialSelectedDate={new Date("2020-08-22")}
+          startDate={todayDate}
+          endDate={nextWeekDate}
+          initialSelectedDate={todayDate}
           onSelectedDateChange={(date) => setSelectedDate(date)}
           selectedItemWidth={170}
           unselectedItemWidth={38}
